@@ -1,3 +1,4 @@
+import 'package:blogapp/pages/addPost.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatefulWidget {
@@ -26,7 +27,9 @@ class _MenuPageState extends State<MenuPage> {
                   )
                 ),
                 onPressed: (){
-
+                  Navigator.push(context, MaterialPageRoute(builder:
+                  (context)=>AddPost()
+                  ));
               },
               child: Text("ADD POST"),),
             ),
@@ -43,7 +46,7 @@ class _MenuPageState extends State<MenuPage> {
                 onPressed: (){
 
               },
-              child: Text("VIEW POST"),),
+              child: Text("VIEW ALL POST"),),
             )
           ],
         ),
