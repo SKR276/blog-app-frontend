@@ -1,3 +1,4 @@
+import 'package:blogapp/pages/register.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,8 +16,8 @@ class _LoginPageState extends State<LoginPage> {
     TextEditingController password=new TextEditingController();
 
     void SendValues(){
-      print("Email Id" + getEmail);
-      print("Password" + getPass);
+      print("Email Id" + email.text);
+      print("Password" + password.text);
     }
     return Scaffold(
       body: Container(
@@ -64,7 +65,9 @@ class _LoginPageState extends State<LoginPage> {
                   )
                 ),
                 onPressed: (){
-
+                  Navigator.push(context, MaterialPageRoute(builder:
+                  (context)=>RegisterPage()
+                  ));
                 },
               child: Text("New User?"),),
             )
