@@ -1,3 +1,4 @@
+import 'package:blogapp/services/userServices.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -19,14 +20,32 @@ class _RegisterPageState extends State<RegisterPage> {
     TextEditingController email=new TextEditingController();
     TextEditingController password=new TextEditingController();
 
-    void SendValues(){
-      print("Name" + name.text);
-      print("Address" + address.text);
-      print("Age" + age.text);
-      print("Pincode" + pincode.text);
-      print("Mobile No" + mobileNo.text);
-      print("Email Id" + email.text);
-      print("Password" + password.text);
+    void SendValues() async{
+      // print("Name" + name.text);
+      // print("Address" + address.text);
+      // print("Age" + age.text);
+      // print("Pincode" + pincode.text);
+      // print("Mobile No" + mobileNo.text);
+      // print("Email Id" + email.text);
+      // print("Password" + password.text);
+
+      final response=await UserServiceApi().sendData(
+          name.text,
+          age.text,
+          address.text,
+          mobileNo.text,
+          pincode.text,
+          email.text,
+          password.text);
+
+      if(response["status"]=="success")
+        {
+          print("register success");
+        }
+      else
+        {
+          print("error");
+        }
     }
     return Scaffold(
       body: SingleChildScrollView(
