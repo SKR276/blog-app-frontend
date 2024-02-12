@@ -1,6 +1,8 @@
+import 'package:blogapp/pages/menu.dart';
 import 'package:blogapp/pages/register.dart';
 import 'package:blogapp/services/userServices.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,8 +27,14 @@ class _LoginPageState extends State<LoginPage> {
           password.text);
       if(response["status"]=="success")
         {
-
+          String userId=response["userdata"]["_id"].toString();
+          SharedPreferences preferences=await SharedPreferences.getInstance();
+          preferences.setString("userId", userId);
+          print("userId:"+userId);
           print("login success");
+          Navigator.push(context, MaterialPageRoute(builder:
+          (context)=>MenuPage()
+          ));
         }
       else if(response["status"]=="invalid user")
         {
