@@ -1,11 +1,13 @@
 import 'dart:convert';
 
+
+import 'package:blogapp/models/postViewModel.dart';
 import 'package:http/http.dart' as http;
 
 class PostApiService{
   Future<dynamic> sendPostData(String userId,String post)async{
     var client=http.Client();
-    var apiUrl=Uri.parse("http://172.16.185.196:3001/api/post/add_post");
+    var apiUrl=Uri.parse("http://localhost:3001/api/post/add_post");
     var response=await client.post(apiUrl,
     headers: <String,String>{
       "Content-Type": "application/json; charset=UTF-8"
@@ -22,6 +24,20 @@ class PostApiService{
     else
       {
         throw Exception("Failed to send");
+      }
+  }
+
+  Future<List<ViewList>> getPostData() async{
+    var client=http.Client();
+    var apiUrl=Uri.parse("http://localhost:3001/api/post/viewall");
+    var response=await client.get(apiUrl);
+    if(response.statusCode==200)
+      {
+        return viewListFromJson(response.body);
+      }
+    else
+      {
+        return [];
       }
   }
 }
