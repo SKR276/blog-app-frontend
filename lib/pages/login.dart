@@ -1,4 +1,5 @@
 import 'package:blogapp/pages/register.dart';
+import 'package:blogapp/services/userServices.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,9 +16,25 @@ class _LoginPageState extends State<LoginPage> {
     TextEditingController email=new TextEditingController();
     TextEditingController password=new TextEditingController();
 
-    void SendValues(){
-      print("Email Id" + email.text);
-      print("Password" + password.text);
+    void SendValues() async{
+      // print("Email Id" + email.text);
+      // print("Password" + password.text);
+
+      final response=await UserServiceApi().sendLoginData(
+          email.text,
+          password.text);
+      if(response["status"]=="success")
+        {
+          print("login success");
+        }
+      else if(response["status"]=="invalid user")
+        {
+          print("incorrect mail id");
+        }
+      else
+        {
+          print("incorrect password");
+        }
     }
     return Scaffold(
       body: Container(
