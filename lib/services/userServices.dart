@@ -7,7 +7,7 @@ class UserServiceApi{
   Future<dynamic> sendLoginData(
       String email,String password)async{
     var client=http.Client();
-    var apiUrl=Uri.parse("http://172.16.185.196:3001/api/userBlog/signin");
+    var apiUrl=Uri.parse("http://localhost:3001/api/userBlog/signin");
 
     var response=await client.post(apiUrl,
     headers: <String,String>{
@@ -31,7 +31,7 @@ class UserServiceApi{
   Future<dynamic> sendData(
       String name,String age,String address,String mobileNo,String pincode,String email,String password) async{
     var client=http.Client();
-    var apiUrl=Uri.parse("http://172.16.185.196:3001/api/userBlog/add");
+    var apiUrl=Uri.parse("http://localhost:3001/api/userBlog/add");
 
     var response=await client.post(apiUrl,
     headers: <String,String>{
